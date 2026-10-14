@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+qdrant-client==1.19.1
+fastembed==0.8.1
+openai
+opentelemetry-api
+openinference-semantic-conventions
+pdfplumber
+python-docx

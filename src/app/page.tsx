@@ -20,7 +20,7 @@ const sections = [
     },
     {
         href: "/camps",
-        title: "Code Camps",
+        title: "Code Camps & Tutoring",
         description: "Recordings and info from the code camps I host.",
         image: "/codeScrollImage.jpg"
     },

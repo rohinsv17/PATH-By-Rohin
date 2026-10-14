@@ -9,6 +9,9 @@ const initialMessages: ChatMessageProps[] = [
     { role: "assistant", content: "Hi, I'm Ask PATH. Ask me anything about navigating high school." },
 ];
 
+// Phrases shown in the reply bubble while waiting, one is picked at random for each question
+const loadingPhrases = ["Thinking...", "Synthesizing...", "Formulating...", "Searching sources...", "Putting it together..."];
+
 // Chat window with message history and the input form
 export default function ChatWindow() {
 
@@ -18,20 +21,49 @@ export default function ChatWindow() {
     // Holds the current text in the input box
     const [input, setInput] = useState("");
 
-    // Adds the user message and a placeholder reply, replaced by a real API call later
-    function handleSubmit(event: React.FormEvent) {
+    // Tracks whether a reply is currently being fetched
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Holds the loading phrase shown for the current question
+    const [loadingPhrase, setLoadingPhrase] = useState(loadingPhrases[0]);
+
+    // Sends the conversation to the chat API and appends the reply
+    async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const trimmed = input.trim();
-        if (!trimmed) {
+        if (!trimmed || isLoading) {
             return;
         }
 
         const userMessage: ChatMessageProps = { role: "user", content: trimmed };
-        const placeholderReply: ChatMessageProps = { role: "assistant", content: "This is a placeholder reply. The real answer will come from Ollama once the backend is connected." };
+        const updatedMessages = [...messages, userMessage];
 
-        setMessages([...messages, userMessage, placeholderReply]);
+        // Picks a random loading phrase for this question
+        setLoadingPhrase(loadingPhrases[Math.floor(Math.random() * loadingPhrases.length)]);
+        setMessages(updatedMessages);
         setInput("");
+        setIsLoading(true);
+
+        try {
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ messages: updatedMessages }),
+            });
+
+            const data = await response.json();
+            const replyMessage: ChatMessageProps = { role: "assistant", content: data.reply };
+
+            setMessages([...updatedMessages, replyMessage]);
+        } catch {
+
+            // Handles a network failure reaching our own API route
+            const fallback: ChatMessageProps = { role: "assistant", content: "Something went wrong sending your message. Please try again." };
+            setMessages([...updatedMessages, fallback]);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -42,12 +74,17 @@ export default function ChatWindow() {
                 {messages.map((message, index) => (
                     <ChatMessage key = {index} role = {message.role} content = {message.content} />
                 ))}
+
+                {/* Shown while waiting for a reply */}
+                {isLoading && (
+                    <ChatMessage role = "assistant" content = {loadingPhrase} />
+                )}
             </div>
 
-            {/* Input row, submits on Enter or button click */}
+            {/* Input row, submits on Enter or button click, length matches the RAG service limit */}
             <form onSubmit = {handleSubmit} className = "flex gap-2 border-t border-gray-200 p-4">
-                <input value = {input} onChange = {(event) => setInput(event.target.value)} placeholder = "Ask a question about high school..." className = "flex-1 rounded-full border border-gray-200 px-4 py-2 text-sm outline-none focus:border-[#09223E]" />
-                <button type = "submit" className = "rounded-full bg-[#09223E] px-5 py-2 text-sm font-medium text-white">
+                <input value = {input} onChange = {(event) => setInput(event.target.value)} placeholder = "Ask a question about high school..." maxLength = {1000} disabled = {isLoading} className = "flex-1 rounded-full border border-gray-200 px-4 py-2 text-sm outline-none focus:border-[#09223E] disabled:opacity-50" />
+                <button type = "submit" disabled = {isLoading} className = "rounded-full bg-[#09223E] px-5 py-2 text-sm font-medium text-white disabled:opacity-50">
                     Send
                 </button>
             </form>

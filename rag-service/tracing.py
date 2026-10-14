@@ -1,0 +1,17 @@
+"""
+Rohin Vijay
+Tracing file for Ask PATH RAG
+--------------------------------
+Allows observability of the RAG pipeline by registering a tracerprovider
+"""
+
+from phoenix.otel import register
+
+
+# Initializes tracing for the RAG pipeline
+def initTracing():
+    # Registers OpenTelemetry tracerprovider with Arize Phoenix
+    tracer_provider = register(project_name = "ask-path-rag", auto_instrument = True, endpoint = "http://localhost:6006/v1/traces", protocol = "http/protobuf")
+
+    print("[Tracing] Phoenix tracing initialized - http://localhost:6006\n")
+    return tracer_provider
