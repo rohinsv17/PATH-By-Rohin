@@ -11,6 +11,9 @@ if (!API_URL) {
     throw new Error("NEXT_PUBLIC_SENTIMENT_API_URL is not set — check your .env.local file.");
 }
 
+// Copy taken after the guard so its type is a plain string inside the component
+const SENTIMENT_API_URL: string = API_URL;
+
 // Shape of a successful prediction response from the backend
 interface PredictionResult {
     label: string;
@@ -45,7 +48,7 @@ export default function SentimentAnalysis() {
 
         try {
             // Sends a POST request with the text in the JSON body
-            const response = await fetch(API_URL, {
+            const response = await fetch(SENTIMENT_API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text: inputText }),
