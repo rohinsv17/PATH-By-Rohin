@@ -37,7 +37,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-env/yaml
+env.yaml
 .venv/
 qdrant_local/
 .vercel
