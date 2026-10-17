@@ -1,11 +1,12 @@
 "use client";
  
 import { useEffect, useState } from "react";
+import BrandIcon from "@/components/BrandIcon";
 
 // Social links
 const socialLinks = [
-    { href: "https://github.com/rohinsv17", label: "GitHub" },
-    { href: "https://linkedin.com/in/rohin-vijay/", label: "LinkedIn" },
+    { href: "https://github.com/rohinsv17", label: "GitHub", icon: "/githubLogo.svg" },
+    { href: "https://linkedin.com/in/rohin-vijay/", label: "LinkedIn", icon: "/linkedinLogo.svg" },
 ];
 
 // Footer component across site
@@ -44,14 +45,15 @@ export default function Footer() {
  
                 {/* Copyright line with dynamic year */}
                 <p className = "text-sm text-gray-600">
-                    {currentYear}, Rohin Vijay. All rights reserved.
+                    &copy; {currentYear}, Rohin Vijay. All rights reserved.
                 </p>
  
                 {/* Social links that open in a new tab with rel for security */}
                 <ul className = "flex gap-6">
                     {socialLinks.map((link) => (
                         <li key = {link.href}>
-                            <a href = {link.href} target = "_blank" rel = "noopener noreferrer" className = "text-sm text-gray-600 hover:text-gray-900">
+                            <a href = {link.href} target = "_blank" rel = "noopener noreferrer" className = "inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
+                                <BrandIcon src = {link.icon} />
                                 {link.label}
                             </a>
                         </li>

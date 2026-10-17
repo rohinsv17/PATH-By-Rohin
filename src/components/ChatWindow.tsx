@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Send } from "lucide-react";
 import ChatMessage from "@/components/ChatMessage";
 import type { ChatMessageProps } from "@/components/ChatMessage";
 
@@ -83,9 +84,9 @@ export default function ChatWindow() {
 
             {/* Input row, submits on Enter or button click, length matches the RAG service limit */}
             <form onSubmit = {handleSubmit} className = "flex gap-2 border-t border-gray-200 p-4">
-                <input value = {input} onChange = {(event) => setInput(event.target.value)} placeholder = "Ask a question about high school..." maxLength = {1000} disabled = {isLoading} className = "flex-1 rounded-full border border-gray-200 px-4 py-2 text-sm outline-none focus:border-[#09223E] disabled:opacity-50" />
-                <button type = "submit" disabled = {isLoading} className = "rounded-full bg-[#09223E] px-5 py-2 text-sm font-medium text-white disabled:opacity-50">
-                    Send
+                <input id = "chat-input" name = "message" type = "text" autoComplete = "off" aria-label = "Ask a question about high school" value = {input} onChange = {(event) => setInput(event.target.value)} placeholder = "Ask a question about high school..." maxLength = {1000} disabled = {isLoading} className = "flex-1 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-[#09223E] outline-none placeholder:text-gray-500 focus:border-[#09223E] disabled:opacity-50" />
+                <button type = "submit" aria-label = "Send" disabled = {isLoading} className = "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#09223E] text-white transition-colors enabled:cursor-pointer enabled:hover:bg-[#DC701B] disabled:opacity-50">
+                    <Send className = "h-4 w-4" />
                 </button>
             </form>
         </div>

@@ -38,7 +38,7 @@ export default function ProjectCard({ title, description, link, demoLink, images
                 ))}
                 <div className = "mt-2 flex flex-wrap gap-4">
                     {link && (
-                        <LinkButton href = {link} variant = "secondary">
+                        <LinkButton href = {link} variant = "secondary" icon = "/githubLogo.svg">
                             View Codebase (GitHub)
                         </LinkButton>
                     )}

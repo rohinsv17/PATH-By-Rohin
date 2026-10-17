@@ -5,8 +5,8 @@ import projects from "@/content/projects";
 
 // Contact links shown at the top of the page
 const contactLinks = [
-    { href: "https://github.com/rohinsv17", label: "GitHub" },
-    { href: "https://linkedin.com/in/rohin-vijay/", label: "LinkedIn" },
+    { href: "https://github.com/rohinsv17", label: "GitHub", icon: "/githubLogo.svg" },
+    { href: "https://linkedin.com/in/rohin-vijay/", label: "LinkedIn", icon: "/linkedinLogo.svg" },
 ];
 
 // Bio text split into paragraphs
@@ -26,7 +26,7 @@ export default function About() {
                     About Me
                 </h1>
 
-                {/* Indented paragraphs are left aligned */}
+                {/* Indented paragraphs are left aligned, the title and buttons stay centered */}
                 <div className = "flex max-w-2xl flex-col gap-3 text-left">
                     {bioParagraphs.map((paragraph, index) => (
                         <p key = {index} className = "indent-8 leading-relaxed text-gray-600">
@@ -37,7 +37,7 @@ export default function About() {
                 <ul className = "mt-2 flex gap-4">
                     {contactLinks.map((link) => (
                         <li key = {link.href}>
-                            <LinkButton href = {link.href}>
+                            <LinkButton href = {link.href} icon = {link.icon}>
                                 {link.label}
                             </LinkButton>
                         </li>
