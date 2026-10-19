@@ -48,7 +48,7 @@ export default function About() {
             {/* Project list, one card per project */}
             <div className = "flex flex-col gap-8">
                 {projects.map((project) => (
-                    <ProjectCard key = {project.title} title = {project.title} description = {project.description} link = {project.link} demoLink = {project.demoLink} images = {project.images} />
+                    <ProjectCard key = {project.title} title = {project.title} description = {project.description} tags = {project.tags} link = {project.link} demoLink = {project.demoLink} images = {project.images} />
                 ))}
             </div>
         </PageShell>

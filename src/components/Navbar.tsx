@@ -32,7 +32,7 @@ export default function Navbar() {
                 <ul className = "hidden items-center gap-8 md:flex">
                     {navLinks.map((link) => (
                         <li key = {link.href}>
-                            <Link href = {link.href} className = "text-sm font-medium text-[#09223E] hover:text-[#DC701B]">
+                            <Link href = {link.href} className = "text-sm font-medium text-[#09223E] hover:text-[#DC701B] hover:underline">
                                 {link.label}
                             </Link>
                         </li>
@@ -50,7 +50,7 @@ export default function Navbar() {
                 <ul className = "absolute inset-x-0 top-full flex flex-col gap-4 bg-[#EEEBF4] px-6 py-4 shadow-sm md:hidden">
                     {navLinks.map((link) => (
                         <li key = {link.href}>
-                            <Link href = {link.href} onClick = {() => setIsOpen(false)} className = "text-sm font-medium text-[#09223E] hover:text-[#DC701B]">
+                            <Link href = {link.href} onClick = {() => setIsOpen(false)} className = "text-sm font-medium text-[#09223E] hover:text-[#DC701B] hover:underline">
                                 {link.label}
                             </Link>
                         </li>

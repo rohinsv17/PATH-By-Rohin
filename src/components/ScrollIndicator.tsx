@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ArrowDown } from "lucide-react";
 
 // Button scrolls to the following section
 export default function ScrollIndicator({ targetId }: { targetId: string }) {
@@ -11,8 +11,8 @@ export default function ScrollIndicator({ targetId }: { targetId: string }) {
     }
 
     return (
-        <button onClick = {handleClick} className = "absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <Image src = "/window.svg" alt = "Scroll to next section" width = {24} height = {24}/>
+        <button onClick = {handleClick} aria-label = "Scroll to next section" className = "absolute bottom-8 left-1/2 flex h-12 w-12 -translate-x-1/2 animate-bounce items-center justify-center rounded-full bg-[#09223E] text-white transition-colors hover:animate-none hover:bg-[#DC701B]">
+            <ArrowDown className = "h-6 w-6" />
         </button>
     );
 }

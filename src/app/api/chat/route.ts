@@ -63,9 +63,17 @@ export async function POST(request: NextRequest) {
 
         const data = await response.json();
         return NextResponse.json({ reply: data.reply });
-    } catch {
+    } catch (error) {
 
-        // Handles a timeout or network failure reaching the RAG service
+        // Logs the cause to the server logs only, never the question, so failures can be diagnosed in Vercel
+        console.error("[chat relay] Request to the RAG service failed:", error);
+
+        // Handles a timeout, which usually means the service is still starting up after being idle
+        if (typeof error === "object" && error !== null && "name" in error && error.name === "TimeoutError") {
+            return NextResponse.json({ reply: "Ask PATH is waking up after being idle. Please try again in about a minute." });
+        }
+
+        // Handles any other network failure reaching the RAG service
         return NextResponse.json({ reply: "Ask PATH is temporarily unavailable. Please try again shortly." });
     }
 }

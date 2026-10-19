@@ -8,16 +8,20 @@ export default function AdvicePage() {
         <PageShell>
  
             {/* Two line header */}
-            <p className = "text-sm font-semibold tracking-wide text-[#DC701B]">
-                HIGH SCHOOL
+            <p className = "text-3xl font-semibold text-gray-900">
+                High School Advice
             </p>
             <h1 className = "mt-2 text-4xl font-bold tracking-tight md:text-5xl">
-                <span className = "block text-[#09223E]">Build Today for</span>
+                <span className = "block text-[#09223E]">Build Today for a</span>
                 <span className = "mt-2 block text-[#DC701B]">Bigger Tomorrow</span>
             </h1>
-            <p className = "mt-4 mb-10 text-sm text-slate-600">
-                {introText}
-            </p>
+            <div className = "mt-6 mb-12 flex max-w-2xl flex-col gap-3 text-left">
+                {introText.map((paragraph, index) => (
+                    <p key = {index} className = "indent-8 leading-relaxed text-gray-600">
+                        {paragraph}
+                    </p>
+                ))}
+            </div>
  
             <AdviceAccordion sections = {adviceSections} />
         </PageShell>

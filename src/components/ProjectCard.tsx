@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import LinkButton from "@/components/LinkButton";
+import TagList from "@/components/TagList";
 import type { Project } from "@/content/projects";
 
 // Displays one project with an info column and an image gallery
-export default function ProjectCard({ title, description, link, demoLink, images }: Project) {
+export default function ProjectCard({ title, description, tags, link, demoLink, images }: Project) {
 
     // Tracks which image in the gallery is currently showing
     const [imageIndex, setImageIndex] = useState(0);
@@ -36,6 +37,7 @@ export default function ProjectCard({ title, description, link, demoLink, images
                         {paragraph}
                     </p>
                 ))}
+                <TagList label = "Project Includes:" tags = {tags} />
                 <div className = "mt-2 flex flex-wrap gap-4">
                     {link && (
                         <LinkButton href = {link} variant = "secondary" icon = "/githubLogo.svg">
