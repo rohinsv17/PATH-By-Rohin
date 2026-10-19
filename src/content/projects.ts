@@ -19,7 +19,7 @@ const projects: Project[] = [
         tags: ["Visual Studio Code", "Python", "Ollama", "Qdrant", "BGE-Large", "BGE-Reranker", "OpenTelemetry", "OpenInference", "Arize Phoenix", "RAGAS", "Hugging Face", "Docker"],
         link: "https://github.com/rohinsv17/RAG-Pipeline",
         demoLink: "/chatbot",
-        images: ["/file.svg", "/globe.svg", "/window.svg"],
+        images: ["/ragImage2.png", "/ragImage1.png"],
     },
     {
         title: "Solar System Small Bodies Diameter Estimation Research",
@@ -29,7 +29,7 @@ const projects: Project[] = [
         ],
         tags: ["Google Colab", "Python", "Random Forest", "XGBoost", "Matplotlib", "SHAP"],
         link: "https://github.com/rohinsv17/ML-Research-Paper-Small-Body-Diameters",
-        images: ["/window.svg", "/file.svg", "/globe.svg"],
+        images: ["/smallBodyImage1.jpg"],
     },
     {
         title: "Stock Sentiment Classifier",
@@ -40,7 +40,7 @@ const projects: Project[] = [
         tags: ["Google Colab", "Visual Studio Code", "Python", "BERT", "NLP", "FastAPI", "React", "TypeScript", "Hugging Face", "Docker"],
         link: "https://github.com/rohinsv17/stock-sentiment-analysis-model",
         demoLink: "/sentiment-analysis",
-        images: ["/window.svg", "/file.svg", "/globe.svg"],
+        images: ["/stockImage1.jpg"],
     },
     {
         title: "FBLA Chapter Website",
@@ -50,7 +50,7 @@ const projects: Project[] = [
         tags: ["Visual Studio Code", "Astro", "JavaScript", "CSS"],
         link: "https://github.com/JohnsCreekFBLA/johnscreekfbla.github.io",
         demoLink: "https://johnscreekfbla.github.io",
-        images: ["/file.svg", "/globe.svg", "/window.svg"],
+        images: ["/fblaWebImage1.png", "/fblaWebImage2.png"],
     },
     {
         title: "Career Realms Game",
@@ -60,7 +60,7 @@ const projects: Project[] = [
         ],
         tags: ["Roblox Studio", "Lua", "Luau", "Blender", "Figma"],
         demoLink: "https://www.roblox.com/games/95986830682529/Career-Realms",
-        images: ["/file.svg", "/globe.svg", "/window.svg"],
+        images: ["/crImage1.png", "/crImage2.png", "/crImage3.png"],
     },
 ];
 
