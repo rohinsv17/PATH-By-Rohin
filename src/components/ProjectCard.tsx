@@ -12,6 +12,9 @@ export default function ProjectCard({ title, description, tags, link, demoLink, 
     // Tracks which image in the gallery is currently showing
     const [imageIndex, setImageIndex] = useState(0);
 
+    // Arrow controls only make sense when there is more than one image
+    const hasMultipleImages = images.length > 1;
+
     // Moves to the previous image, wrapping around at the start
     function showPrevious() {
         setImageIndex((imageIndex - 1 + images.length) % images.length);
@@ -52,15 +55,19 @@ export default function ProjectCard({ title, description, tags, link, demoLink, 
                 </div>
             </div>
 
-            {/* Right column image gallery with arrow controls */}
+            {/* Right column image gallery, arrows only render when there are multiple images */}
             <div className = "relative flex flex-1 items-center justify-center bg-gray-50 py-8">
-                <button onClick = {showPrevious} className = "absolute left-2 text-lg text-gray-600 hover:text-gray-900">
-                    ←
-                </button>
+                {hasMultipleImages && (
+                    <button onClick = {showPrevious} className = "absolute left-2 text-lg text-gray-600 hover:text-gray-900">
+                        ←
+                    </button>
+                )}
                 <Image src = {images[imageIndex]} alt = {`${title} screenshot ${imageIndex + 1}`} width = {300} height = {200} className = "rounded" />
-                <button onClick = {showNext} className = "absolute right-2 text-lg text-gray-600 hover:text-gray-900">
-                    →
-                </button>
+                {hasMultipleImages && (
+                    <button onClick = {showNext} className = "absolute right-2 text-lg text-gray-600 hover:text-gray-900">
+                        →
+                    </button>
+                )}
             </div>
         </div>
     );

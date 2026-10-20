@@ -60,7 +60,7 @@ const projects: Project[] = [
         ],
         tags: ["Roblox Studio", "Lua", "Luau", "Blender", "Figma"],
         demoLink: "https://www.roblox.com/games/95986830682529/Career-Realms",
-        images: ["/crImage1.jpg", "/crImage2.jpg", "/crImage3.jpg"],
+        images: ["/cRImage1.jpg", "/cRImage2.jpg", "/cRImage3.jpg"],
     },
 ];
 
