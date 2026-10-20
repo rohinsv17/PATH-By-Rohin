@@ -19,7 +19,7 @@ const projects: Project[] = [
         tags: ["Visual Studio Code", "Python", "Ollama", "Qdrant", "BGE-Large", "BGE-Reranker", "OpenTelemetry", "OpenInference", "Arize Phoenix", "RAGAS", "Hugging Face", "Docker"],
         link: "https://github.com/rohinsv17/RAG-Pipeline",
         demoLink: "/chatbot",
-        images: ["/ragImage2.png", "/ragImage1.png"],
+        images: ["/ragImage2.png"],
     },
     {
         title: "Solar System Small Bodies Diameter Estimation Research",
@@ -60,7 +60,7 @@ const projects: Project[] = [
         ],
         tags: ["Roblox Studio", "Lua", "Luau", "Blender", "Figma"],
         demoLink: "https://www.roblox.com/games/95986830682529/Career-Realms",
-        images: ["/crImage1.png", "/crImage2.png", "/crImage3.png"],
+        images: ["/crImage1.jpg", "/crImage2.jpg", "/crImage3.jpg"],
     },
 ];
 
