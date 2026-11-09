@@ -75,18 +75,54 @@ export default function SentimentAnalysis() {
         <PageShell widthClass = "max-w-xl">
 
             {/* Page heading and short explanation */}
-            <div className = "mb-10 flex flex-col items-center gap-3 text-center">
+            <div className = "mb-8 flex flex-col items-center gap-3 pt-8 text-center">
                 <h1 className = "text-3xl font-semibold text-gray-900">
                     Meme Stock Sentiment Classifier
                 </h1>
-                <p className = "max-w-md text-gray-600">
-                    Paste investing related text below to classify it as Positive, Negative, or Neutral.
-                </p>
+            </div>
+
+            {/* Project description split into short labelled sections */}
+            <div className = "mb-10 flex flex-col gap-5 text-sm text-gray-600">
+                <div className = "flex flex-col gap-1">
+                    <h2 className = "font-semibold text-gray-900">
+                        What it does:
+                    </h2>
+                    <p>
+                        This tool reads a piece of investing related text, such as a post or comment about a stock, and classifies its tone as Positive, Negative, or Neutral. It also shows how confident the model is in each of the three labels.
+                    </p>
+                </div>
+
+                <div className = "flex flex-col gap-1">
+                    <h2 className = "font-semibold text-gray-900">
+                        How to use it:
+                    </h2>
+                    <p>
+                        Paste text into the box below and press Classify. It is meant for gauging the mood of online discussion around a meme stock, not for predicting price movements, and nothing here is financial advice. Meme stocks, specifically, are stocks that gain popularity through social media and online sentiments.
+                    </p>
+                </div>
+
+                <div className = "flex flex-col gap-1">
+                    <h2 className = "font-semibold text-gray-900">
+                        Background:
+                    </h2>
+                    <p>
+                        I built this to explore how sentiment around meme stocks could inform whether one is worth a closer look. I collaborated with other students to tune the model in Google Colab, and then independently turned it into a small web service so it could be used from this site.
+                    </p>
+                </div>
+
+                <div className = "flex flex-col gap-1">
+                    <h2 className = "font-semibold text-gray-900">
+                        How it works:
+                    </h2>
+                    <p>
+                        The classifier uses a tuned BERT model for Natural Language Processing. A FastAPI backend in Python serves it from a Hugging Face Space, with the model weights hosted on the Hugging Face Hub. This page is built with Next.js, React, and TypeScript, and sends your text to the backend through a single API request. The backend runs on free hardware that sleeps when idle, so the first request after a quiet period can take up to a minute while the model wakes up.
+                    </p>
+                </div>
             </div>
 
             {/* Text input and submit button */}
             <div className = "flex flex-col gap-4">
-                <textarea value = {inputText} onChange = {(e) => setInputText(e.target.value)} rows = {4} placeholder = "e.g. this stock is going to the moon" className = "rounded-lg border border-gray-200 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300" />
+                <textarea value = {inputText} onChange = {(e) => setInputText(e.target.value)} rows = {4} placeholder = "e.g. The GameStop stock is experiencing record highs this month..." className = "rounded-lg border border-gray-200 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300" />
                 <button onClick = {classifyText} disabled = {isLoading} className = "rounded-lg bg-gray-900 py-3 text-sm font-medium text-white disabled:opacity-50">
                     {isLoading ? "Classifying..." : "Classify"}
                 </button>
